@@ -1,0 +1,12 @@
+# Admin area protection
+# Uncomment and add your IP to restrict access
+# Order Deny,Allow
+# Deny from all
+# Allow from 127.0.0.1
+# Allow from YOUR_IP_ADDRESS
+
+# Prevent access to backup files
+<FilesMatch "\.(bak|backup|old|md)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>

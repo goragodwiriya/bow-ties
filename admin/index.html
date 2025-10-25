@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>แอดมิน - โบว์ไว้อาลัย</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+  <!-- Loading Screen -->
+  <div class="loading-screen" id="loading-screen">
+    <div class="loading-spinner"></div>
+    <p>กำลังตรวจสอบสิทธิ์...</p>
+  </div>
+
+  <div class="admin-container" id="admin-container" style="display: none;">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h1>โบว์ไว้อาลัย</h1>
+        <p>ระบบจัดการ</p>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" data-page="orders">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 2 6 9H22l-3-7H9Z"></path>
+            <path d="M6 9H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h16"></path>
+          </svg>
+          คำสั่งซื้อ
+        </a>
+        <a href="#" class="nav-item" data-page="products">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="9" y1="9" x2="15" y2="15"></line>
+            <line x1="15" y1="9" x2="9" y2="15"></line>
+          </svg>
+          สินค้า
+        </a>
+        <a href="#" class="nav-item" data-page="reports">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 3v18h18"></path>
+            <path d="m19 9-5 5-4-4-3 3"></path>
+          </svg>
+          รายงาน
+        </a>
+        <a href="#" class="nav-item" data-page="settings">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M12 1v6m0 6v6"></path>
+            <path d="m1 12 6 0m6 0 6 0"></path>
+          </svg>
+          ตั้งค่า
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="btn-logout" id="logout-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+          ออกจากระบบ
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Orders Page -->
+      <div class="page active" id="orders-page">
+        <div class="page-header">
+          <h2>คำสั่งซื้อ</h2>
+          <div class="header-actions">
+            <div class="search-box">
+              <input type="text" id="search-input" placeholder="ค้นหาคำสั่งซื้อ...">
+            </div>
+            <select id="status-filter" class="filter-select">
+              <option value="">ทั้งหมด</option>
+              <option value="pending">รอชำระเงิน</option>
+              <option value="processing">กำลังดำเนินการ</option>
+              <option value="completed">เสร็จสิ้น</option>
+              <option value="cancelled">ยกเลิก</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon pending">📋</div>
+            <div class="stat-info">
+              <div class="stat-value" id="stat-pending">0</div>
+              <div class="stat-label">รอชำระเงิน</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon processing">⚙️</div>
+            <div class="stat-info">
+              <div class="stat-value" id="stat-processing">0</div>
+              <div class="stat-label">กำลังดำเนินการ</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon completed">✅</div>
+            <div class="stat-info">
+              <div class="stat-value" id="stat-completed">0</div>
+              <div class="stat-label">เสร็จสิ้น</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon total">💰</div>
+            <div class="stat-info">
+              <div class="stat-value" id="stat-total">฿0</div>
+              <div class="stat-label">ยอดขายรวม</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="orders-table">
+            <thead>
+              <tr>
+                <th>เลขที่</th>
+                <th>ลูกค้า</th>
+                <th>สินค้า</th>
+                <th>ยอดรวม</th>
+                <th>สถานะ</th>
+                <th>การชำระเงิน</th>
+                <th>วันที่</th>
+                <th>จัดการ</th>
+              </tr>
+            </thead>
+            <tbody id="orders-tbody">
+              <tr>
+                <td colspan="8" class="loading">กำลังโหลด...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pagination" id="pagination">
+          <!-- Pagination will be generated here -->
+        </div>
+      </div>
+
+      <!-- Products Page -->
+      <div class="page" id="products-page">
+        <div class="page-header">
+          <h2>สินค้า</h2>
+          <button class="btn-primary" onclick="showProductModal()">+ เพิ่มสินค้าใหม่</button>
+        </div>
+        <div id="products-list">
+          <p class="loading">กำลังโหลด...</p>
+        </div>
+      </div>
+
+      <!-- Reports Page -->
+      <div class="page" id="reports-page">
+        <div class="page-header">
+          <h2>รายงาน</h2>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">📊</div>
+            <div class="stat-info">
+              <div class="stat-value" id="report-total-orders">0</div>
+              <div class="stat-label">คำสั่งซื้อทั้งหมด</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">💰</div>
+            <div class="stat-info">
+              <div class="stat-value" id="report-total-sales">฿0</div>
+              <div class="stat-label">ยอดขายรวม</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📈</div>
+            <div class="stat-info">
+              <div class="stat-value" id="report-avg-order">฿0</div>
+              <div class="stat-label">ค่าเฉลี่ยต่อออเดอร์</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">✅</div>
+            <div class="stat-info">
+              <div class="stat-value" id="report-completed">0</div>
+              <div class="stat-label">เสร็จสิ้น</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-container">
+          <h3>ยอดขาย 7 วันล่าสุด</h3>
+          <canvas id="sales-chart"></canvas>
+        </div>
+      </div>
+
+      <!-- Settings Page -->
+      <div class="page" id="settings-page">
+        <div class="page-header">
+          <h2>ตั้งค่า</h2>
+        </div>
+        <div class="settings-container">
+          <div class="settings-section">
+            <h3>ข้อมูลร้าน</h3>
+            <form id="shop-settings-form">
+              <div class="form-group">
+                <label>ชื่อร้าน</label>
+                <input type="text" id="shop-name" value="โบว์ไว้อาลัย">
+              </div>
+              <div class="form-group">
+                <label>เบอร์โทร</label>
+                <input type="text" id="shop-phone" value="02-xxx-xxxx">
+              </div>
+              <div class="form-group">
+                <label>อีเมล</label>
+                <input type="email" id="shop-email" value="info@bowties.com">
+              </div>
+              <button type="submit" class="btn-primary">บันทึก</button>
+            </form>
+          </div>
+
+          <div class="settings-section">
+            <h3>การแจ้งเตือน Telegram</h3>
+            <form id="telegram-settings-form">
+              <div class="form-group">
+                <label>Bot Token</label>
+                <input type="text" id="telegram-token" placeholder="123456:ABC-DEF...">
+              </div>
+              <div class="form-group">
+                <label>Chat ID</label>
+                <input type="text" id="telegram-chat-id" placeholder="-100...">
+              </div>
+              <div class="form-actions">
+                <button type="button" class="btn-secondary" onclick="testTelegram()">ทดสอบส่งข้อความ</button>
+                <button type="submit" class="btn-primary">บันทึก</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="settings-section">
+            <h3>เปลี่ยนรหัสผ่าน</h3>
+            <form id="password-form">
+              <div class="form-group">
+                <label>รหัสผ่านเดิม</label>
+                <input type="password" id="old-password" required>
+              </div>
+              <div class="form-group">
+                <label>รหัสผ่านใหม่</label>
+                <input type="password" id="new-password" required>
+              </div>
+              <div class="form-group">
+                <label>ยืนยันรหัสผ่านใหม่</label>
+                <input type="password" id="confirm-password" required>
+              </div>
+              <button type="submit" class="btn-primary">เปลี่ยนรหัสผ่าน</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Order Detail Modal -->
+  <div class="modal" id="order-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>รายละเอียดคำสั่งซื้อ</h3>
+        <button class="modal-close" id="modal-close">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-body">
+        <!-- Order details will be loaded here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Modal -->
+  <div class="modal" id="product-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="product-modal-title">เพิ่มสินค้าใหม่</h3>
+        <button class="modal-close" onclick="closeProductModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="product-form" onsubmit="saveProduct(event)">
+          <input type="hidden" id="product-id">
+
+          <div class="form-group">
+            <label for="product-name">ชื่อสินค้า *</label>
+            <input type="text" id="product-name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="product-description">รายละเอียด</label>
+            <textarea id="product-description" rows="3"></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="product-price">ราคา (บาท) *</label>
+              <input type="number" id="product-price" step="0.01" min="0" required>
+            </div>
+
+            <div class="form-group">
+              <label for="product-stock">จำนวนคงเหลือ *</label>
+              <input type="number" id="product-stock" min="0" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="product-category">หมวดหมู่ *</label>
+            <select id="product-category" required>
+              <option value="classic">Classic</option>
+              <option value="premium">Premium</option>
+              <option value="luxury">Luxury</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="product-image">รูปภาพ (path) *</label>
+            <input type="text" id="product-image" placeholder="images/bow-1.png" required>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn-secondary" onclick="closeProductModal()">ยกเลิก</button>
+            <button type="submit" class="btn-primary">บันทึก</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+
+</html>

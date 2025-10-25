@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เข้าสู่ระบบ - โบว์ไว้อาลัย</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Sarabun', sans-serif;
+      background: linear-gradient(135deg, #000 0%, #333 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-container {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .login-header h1 {
+      font-family: 'Prompt', sans-serif;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .login-header p {
+      color: #666;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-family: 'Sarabun', sans-serif;
+      font-size: 1rem;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #000;
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 12px;
+      background-color: #000;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-family: 'Sarabun', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-login:hover {
+      background-color: #333;
+    }
+
+    .btn-login:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .error-message {
+      background-color: #f8d7da;
+      color: #721c24;
+      padding: 12px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-container">
+    <div class="login-header">
+      <h1>โบว์ไว้อาลัย</h1>
+      <p>ระบบจัดการ</p>
+    </div>
+
+    <div class="error-message" id="error-message"></div>
+
+    <form id="login-form">
+      <div class="form-group">
+        <label for="username">ชื่อผู้ใช้</label>
+        <input type="text" id="username" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">รหัสผ่าน</label>
+        <input type="password" id="password" required>
+      </div>
+
+      <button type="submit" class="btn-login" id="login-btn">เข้าสู่ระบบ</button>
+    </form>
+  </div>
+
+  <script>
+    // Check if already logged in
+    window.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const response = await fetch('check-auth.php?json=1', {
+          credentials: 'same-origin'
+        });
+        const data = await response.json();
+
+        if (data.authenticated) {
+          window.location.href = 'index.html';
+        }
+      } catch (error) {
+        // Not logged in, continue
+      }
+    });
+
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const errorMessage = document.getElementById('error-message');
+      const loginBtn = document.getElementById('login-btn');
+
+      errorMessage.classList.remove('show');
+      loginBtn.disabled = true;
+      loginBtn.textContent = 'กำลังเข้าสู่ระบบ...';
+
+      try {
+        const response = await fetch('../api/admin/login.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          credentials: 'same-origin',
+          body: JSON.stringify({username, password})
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          if (data.csrfToken) {
+            sessionStorage.setItem('csrfToken', data.csrfToken);
+          }
+          window.location.href = 'index.html';
+        } else {
+          errorMessage.textContent = data.message || 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง';
+          errorMessage.classList.add('show');
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+        errorMessage.textContent = 'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง';
+        errorMessage.classList.add('show');
+      } finally {
+        loginBtn.disabled = false;
+        loginBtn.textContent = 'เข้าสู่ระบบ';
+      }
+    });
+  </script>
+</body>
+
+</html>

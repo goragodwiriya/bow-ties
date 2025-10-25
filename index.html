@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>โบว์ไว้อาลัย - โบว์สีดำสำหรับงานศพ คุณภาพดี ราคาเหมาะสม</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <h1>โบว์ไว้อาลัย</h1>
+          <p>โบว์สีดำสำหรับงานศพ</p>
+        </div>
+        <nav class="main-nav">
+          <ul>
+            <li><a href="#" class="nav-link active" data-page="home">หน้าแรก</a></li>
+            <li><a href="#" class="nav-link" data-page="products">สินค้า</a></li>
+            <li><a href="#" class="nav-link" data-page="about">เกี่ยวกับเรา</a></li>
+            <li><a href="#" class="nav-link" data-page="contact">ติดต่อเรา</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <button class="btn-icon cart-toggle" aria-label="Shopping Cart">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 2 6 9H22l-3-7H9Z"></path>
+              <path d="M6 9H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h16"></path>
+              <path d="M6 14h.01"></path>
+              <path d="M10 14h4"></path>
+              <path d="M18 14h.01"></path>
+              <path d="M6 18h.01"></path>
+              <path d="M10 18h4"></path>
+              <path d="M18 18h.01"></path>
+            </svg>
+            <span class="cart-count">0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <!-- Home Page -->
+    <section id="home" class="page active">
+      <div class="hero">
+        <div class="container">
+          <div class="hero-content">
+            <h2>แสดงความเคารพด้วยความจริงใจ</h2>
+            <p>โบว์สีดำคุณภาพดี สำหรับติดเสื้อในงานศพและงานไว้อาลัย ส่งตรงถึงมือคุณอย่างรวดเร็ว</p>
+            <a href="#" class="btn btn-primary" data-page="products">ดูสินค้าทั้งหมด</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <section class="featured-products">
+          <h2 class="section-title">สินค้าแนะนำ</h2>
+          <div class="products-grid" id="featured-products">
+            <!-- Products will be loaded here -->
+          </div>
+        </section>
+
+        <section class="about-preview">
+          <div class="about-content">
+            <h2>ทำไมต้องเลือกเรา</h2>
+            <p>เราเข้าใจว่าการแสดงความเคารพในช่วงเวลาที่สำคัญนั้นต้องการความเหมาะสม โบว์ของเราทำจากผ้าคุณภาพดี ดีไซน์เรียบง่ายแต่สง่างาม เหมาะสำหรับทุกโอกาสที่ต้องการความสุภาพและเคารพ พร้อมบริการจัดส่งรวดเร็วทั่วประเทศ</p>
+            <a href="#" class="btn btn-secondary footer-link" data-page="about">อ่านเพิ่มเติม</a>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- Products Page -->
+    <section id="products" class="page">
+      <div class="container">
+        <div class="page-header">
+          <h2>สินค้าทั้งหมด</h2>
+          <p>เลือกโบว์สีดำคุณภาพดีที่เหมาะกับคุณ</p>
+        </div>
+
+        <div class="products-filters">
+          <div class="filter-group">
+            <label for="category-filter">ประเภท:</label>
+            <select id="category-filter">
+              <option value="all">ทั้งหมด</option>
+              <option value="classic">แบบคลาสสิก</option>
+              <option value="premium">แบบทันสมัย</option>
+              <option value="luxury">แบบหรูหรา</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="sort-filter">เรียงตาม:</label>
+            <select id="sort-filter">
+              <option value="name-asc">ชื่อ (ก-ฮ)</option>
+              <option value="name-desc">ชื่อ (ฮ-ก)</option>
+              <option value="price-asc">ราคา (ต่ำ-สูง)</option>
+              <option value="price-desc">ราคา (สูง-ต่ำ)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="products-grid" id="all-products">
+          <!-- Products will be loaded here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Detail Page -->
+    <section id="product-detail" class="page">
+      <div class="container">
+        <div class="product-detail-container">
+          <div class="product-images">
+            <div class="main-image">
+              <img id="main-product-image" src="" alt="">
+            </div>
+            <div class="thumbnail-images">
+              <!-- Thumbnails will be loaded here -->
+            </div>
+          </div>
+
+          <div class="product-info">
+            <h1 id="product-name"></h1>
+            <div class="product-price" id="product-price"></div>
+            <div class="product-description" id="product-description"></div>
+
+            <div class="product-options">
+              <div class="option-group">
+                <label for="product-quantity">จำนวน:</label>
+                <div class="quantity-selector">
+                  <button id="quantity-decrease">-</button>
+                  <input type="number" id="product-quantity" value="1" min="1">
+                  <button id="quantity-increase">+</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-actions">
+              <button id="add-to-cart" class="btn btn-primary">เพิ่มลงตะกร้า</button>
+              <button id="buy-now" class="btn btn-secondary">สั่งซื้อเลย</button>
+            </div>
+
+            <div class="product-details">
+              <h3>รายละเอียดสินค้า</h3>
+              <ul id="product-details-list">
+                <!-- Details will be loaded here -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cart Page -->
+    <section id="cart" class="page">
+      <div class="container">
+        <div class="page-header">
+          <h2>ตะกร้าสินค้า</h2>
+        </div>
+
+        <div class="cart-container">
+          <div class="cart-items" id="cart-items">
+            <!-- Cart items will be loaded here -->
+          </div>
+
+          <div class="cart-summary">
+            <h3>สรุปคำสั่งซื้อ</h3>
+            <div class="summary-row">
+              <span>ราคาสินค้า:</span>
+              <span id="cart-subtotal">฿0.00</span>
+            </div>
+            <div class="summary-row">
+              <span>ค่าจัดส่ง:</span>
+              <span id="cart-shipping">฿0.00</span>
+            </div>
+            <div class="summary-row total">
+              <span>ยอดรวมทั้งหมด:</span>
+              <span id="cart-total">฿0.00</span>
+            </div>
+            <button id="checkout-btn" class="btn btn-primary">ดำเนินการสั่งซื้อ</button>
+            <a href="#" class="btn btn-secondary" data-page="products">เลือกซื้อสินค้าต่อ</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Checkout Page -->
+    <section id="checkout" class="page">
+      <div class="container">
+        <div class="page-header">
+          <h2>ชำระเงิน</h2>
+        </div>
+
+        <div class="checkout-container">
+          <div class="checkout-form">
+            <form id="checkout-form">
+              <div class="form-section">
+                <h3>ข้อมูลติดต่อ</h3>
+                <div class="form-group">
+                  <label for="checkout-name">ชื่อ-นามสกุล</label>
+                  <input type="text" id="checkout-name" required>
+                </div>
+                <div class="form-group">
+                  <label for="checkout-email">อีเมล</label>
+                  <input type="email" id="checkout-email" required>
+                </div>
+                <div class="form-group">
+                  <label for="checkout-phone">เบอร์โทรศัพท์</label>
+                  <input type="tel" id="checkout-phone" required>
+                </div>
+              </div>
+
+              <div class="form-section">
+                <h3>ที่อยู่จัดส่ง</h3>
+                <div class="form-group">
+                  <label for="checkout-address">ที่อยู่</label>
+                  <input type="text" id="checkout-address" required>
+                </div>
+                <div class="form-group">
+                  <label for="checkout-city">เขต/อำเภอ</label>
+                  <input type="text" id="checkout-city" required>
+                </div>
+                <div class="form-group">
+                  <label for="checkout-postal">รหัสไปรษณีย์</label>
+                  <input type="text" id="checkout-postal" required>
+                </div>
+                <div class="form-group">
+                  <label for="checkout-country">จังหวัด</label>
+                  <input type="text" id="checkout-country" required>
+                </div>
+              </div>
+
+              <div class="form-section">
+                <h3>วิธีการจัดส่ง</h3>
+                <div class="radio-group">
+                  <label>
+                    <input type="radio" name="shipping" value="standard" checked>
+                    <span>จัดส่งธรรมดา (3-5 วัน) - ฿50.00</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="shipping" value="express">
+                    <span>จัดส่งด่วน (1-2 วัน) - ฿100.00</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-section">
+                <h3>วิธีการชำระเงิน</h3>
+                <div class="radio-group">
+                  <label>
+                    <input type="radio" name="payment" value="promptpay" checked>
+                    <span>พร้อมเพย์ / QR Code</span>
+                  </label>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary">ยืนยันคำสั่งซื้อ</button>
+            </form>
+          </div>
+
+          <div class="checkout-summary">
+            <h3>สรุปคำสั่งซื้อ</h3>
+            <div class="summary-items" id="checkout-items">
+              <!-- Items will be loaded here -->
+            </div>
+            <div class="summary-row">
+              <span>ราคาสินค้า:</span>
+              <span id="checkout-subtotal">฿0.00</span>
+            </div>
+            <div class="summary-row">
+              <span>ค่าจัดส่ง:</span>
+              <span id="checkout-shipping">฿50.00</span>
+            </div>
+            <div class="summary-row total">
+              <span>ยอดรวมทั้งหมด:</span>
+              <span id="checkout-total">฿0.00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Order Confirmation Page -->
+    <section id="order-confirmation" class="page">
+      <div class="container">
+        <div class="confirmation-container">
+          <div class="confirmation-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          <h2>สั่งซื้อสำเร็จ!</h2>
+          <p>ขอบคุณที่ไว้วางใจเรา คำสั่งซื้อของคุณได้รับการบันทึกเรียบร้อยแล้ว</p>
+
+          <div class="order-details">
+            <div class="detail-row">
+              <span>เลขที่คำสั่งซื้อ:</span>
+              <span id="order-number"></span>
+            </div>
+            <div class="detail-row">
+              <span>วันที่:</span>
+              <span id="order-date"></span>
+            </div>
+            <div class="detail-row">
+              <span>ยอดรวม:</span>
+              <span id="order-total"></span>
+            </div>
+            <div class="detail-row">
+              <span>วิธีชำระเงิน:</span>
+              <span id="order-payment"></span>
+            </div>
+          </div>
+
+          <div class="payment-qr" id="payment-qr">
+            <h3>ชำระเงินผ่านพร้อมเพย์</h3>
+            <div class="qr-instructions">
+              <p><strong>วิธีชำระเงิน:</strong></p>
+              <ol>
+                <li>เปิดแอปธนาคารหรือแอปกระเป๋าเงินอิเล็กทรอนิกส์</li>
+                <li>เลือกเมนู "สแกน QR" หรือ "พร้อมเพย์"</li>
+                <li>สแกน QR Code ด้านล่าง</li>
+                <li>ตรวจสอบยอดเงินให้ถูกต้อง</li>
+                <li>ยืนยันการชำระเงิน</li>
+              </ol>
+            </div>
+            <div class="qr-code-container">
+              <div class="qr-code">
+                <img src="" alt="QR Code ชำระเงิน" id="qr-code-image">
+              </div>
+              <div class="qr-info">
+                <p class="qr-amount">ยอดชำระ: <span id="qr-amount">฿0.00</span></p>
+                <p class="qr-note">QR Code นี้สร้างขึ้นสำหรับคำสั่งซื้อนี้โดยเฉพาะ</p>
+              </div>
+            </div>
+            <div class="payment-note">
+              <p>⚠️ <strong>หมายเหตุ:</strong> หลังจากชำระเงินแล้ว กรุณากดปุ่มด้านล่างเพื่อยืนยัน เราจะตรวจสอบและดำเนินการจัดส่งสินค้าให้คุณโดยเร็วที่สุด</p>
+            </div>
+            <button id="confirm-payment" class="btn btn-primary">✓ ฉันชำระเงินแล้ว</button>
+          </div>
+
+          <div class="confirmation-actions">
+            <a href="#" class="btn btn-secondary" data-page="home">กลับหน้าแรก</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Page -->
+    <section id="about" class="page">
+      <div class="container">
+        <div class="page-header">
+          <h2>เกี่ยวกับเรา</h2>
+        </div>
+
+        <div class="about-content">
+          <div class="about-text">
+            <p>เราเป็นผู้จำหน่ายโบว์สีดำคุณภาพดีสำหรับติดเสื้อในงานศพและงานไว้อาลัย เราเข้าใจดีว่าการแสดงความเคารพและความอาลัยในช่วงเวลาที่สำคัญนั้นต้องการความเหมาะสมและความสุภาพ</p>
+
+            <h3>คุณภาพที่เชื่อถือได้</h3>
+            <p>โบว์ทุกชิ้นของเราผลิตจากผ้าคุณภาพดี ทนทาน และดูสง่างาม เราคัดสรรวัสดุที่มีคุณภาพมาอย่างดีเพื่อให้คุณมั่นใจในทุกโอกาสสำคัญ ไม่ว่าจะเป็นงานศพ งานไว้อาลัย หรืองานพิธีต่างๆ</p>
+
+            <h3>บริการที่ใส่ใจ</h3>
+            <p>เราให้บริการจัดส่งรวดเร็วทั่วประเทศ เพราะเราเข้าใจว่าบางครั้งคุณอาจต้องการสินค้าอย่างเร่งด่วน ทีมงานของเราพร้อมให้คำปรึกษาและช่วยเหลือคุณตลอดเวลา</p>
+          </div>
+
+          <div class="about-image">
+            <img src="images/about.png" alt="โบว์ไว้อาลัย">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shipping & Returns Page -->
+    <section id="shipping" class="page">
+      <div class="container">
+        <div class="page-header">
+          <h2>การจัดส่งและคืนสินค้า</h2>
+        </div>
+
+        <div class="info-content">
+          <div class="info-section">
+            <h3>การจัดส่งสินค้า</h3>
+            <p>เราให้บริการจัดส่งทั่วประเทศไทยผ่านบริษัทขนส่งชั้นนำ</p>
+
+            <h4>ค่าจัดส่ง</h4>
+            <ul>
+              <li><strong>จัดส่งธรรมดา (3-5 วันทำการ):</strong> ฿50</li>
+              <li><strong>จัดส่งด่วน (1-2 วันทำการ):</strong> ฿100</li>
+              <li><strong>จัดส่งฟรี:</strong> เมื่อสั่งซื้อครบ ฿1,000 ขึ้นไป</li>
+            </ul>
+
+            <h4>ระยะเวลาจัดส่ง</h4>
+            <ul>
+              <li>กรุงเทพและปริมณฑล: 1-2 วันทำการ</li>
+              <li>ต่างจังหวัด: 3-5 วันทำการ</li>
+              <li>พื้นที่ห่างไกล: 5-7 วันทำการ</li>
+            </ul>
+
+            <h4>การติดตามพัสดุ</h4>
+            <p>เมื่อสินค้าถูกจัดส่งแล้ว เราจะส่งหมายเลขติดตามพัสดุให้คุณทาง SMS และอีเมล</p>
+          </div>
+
+          <div class="info-section">
+            <h3>นโยบายการคืนสินค้า</h3>
+            <p>เราต้องการให้คุณพึงพอใจกับสินค้าของเรา หากมีปัญหาใดๆ สามารถคืนสินค้าได้ภายใน 7 วัน</p>
+
+            <h4>เงื่อนไขการคืนสินค้า</h4>
+            <ul>
+              <li>สินค้าต้องอยู่ในสภาพเดิม ไม่ผ่านการใช้งาน</li>
+              <li>มีป้ายและบรรจุภัณฑ์ครบถ้วน</li>
+              <li>แจ้งความประสงค์ภายใน 7 วันหลังได้รับสินค้า</li>
+              <li>ส่งสินค้ากลับภายใน 14 วันหลังแจ้งความประสงค์</li>
+            </ul>
+
+            <h4>วิธีการคืนสินค้า</h4>
+            <ol>
+              <li>ติดต่อเราทางอีเมลหรือโทรศัพท์</li>
+              <li>แจ้งเลขที่คำสั่งซื้อและเหตุผลในการคืนสินค้า</li>
+              <li>รอรับคำแนะนำในการส่งสินค้ากลับ</li>
+              <li>คืนเงินภายใน 7-14 วันทำการหลังได้รับสินค้าคืน</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How to Order Page -->
+    <section id="how-to-order" class="page">
+      <div class="container">
+        <div class="page-header">
+          <h2>วิธีการสั่งซื้อ</h2>
+        </div>
+
+        <div class="info-content">
+          <div class="info-section">
+            <h3>ขั้นตอนการสั่งซื้อออนไลน์</h3>
+
+            <div class="step-item">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h4>เลือกสินค้า</h4>
+                <p>เลือกดูสินค้าจากหน้า "สินค้า" คลิกที่สินค้าที่สนใจเพื่อดูรายละเอียด</p>
+              </div>
+            </div>
+
+            <div class="step-item">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h4>เพิ่มลงตะกร้า</h4>
+                <p>เลือกจำนวนที่ต้องการ แล้วกดปุ่ม "เพิ่มลงตะกร้า" หรือ "สั่งซื้อเลย"</p>
+              </div>
+            </div>
+
+            <div class="step-item">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <h4>ตรวจสอบตะกร้าสินค้า</h4>
+                <p>คลิกไอคอนตะกร้าเพื่อตรวจสอบสินค้า สามารถแก้ไขจำนวนหรือลบสินค้าได้</p>
+              </div>
+            </div>
+
+            <div class="step-item">
+              <div class="step-number">4</div>
+              <div class="step-content">
+                <h4>กรอกข้อมูลจัดส่ง</h4>
+                <p>กรอกชื่อ-นามสกุล ที่อยู่ เบอร์โทรศัพท์ และอีเมลให้ครบถ้วน</p>
+              </div>
+            </div>
+
+            <div class="step-item">
+              <div class="step-number">5</div>
+              <div class="step-content">
+                <h4>เลือกวิธีจัดส่ง</h4>
+                <p>เลือกระหว่างจัดส่งธรรมดา (3-5 วัน) หรือจัดส่งด่วน (1-2 วัน)</p>
+              </div>
+            </div>
+
+            <div class="step-item">
+              <div class="step-number">6</div>
+              <div class="step-content">
+                <h4>ชำระเงิน</h4>
+                <p>สแกน QR Code พร้อมเพย์เพื่อชำระเงิน แล้วกดปุ่ม "ฉันชำระเงินแล้ว"</p>
+              </div>
+            </div>
+
+            <div class="step-item">
+              <div class="step-number">7</div>
+              <div class="step-content">
+                <h4>รอรับสินค้า</h4>
+                <p>เราจะจัดส่งสินค้าให้คุณตามที่อยู่ที่ระบุ พร้อมหมายเลขติดตามพัสดุ</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-section">
+            <h3>ช่องทางการสั่งซื้ออื่นๆ</h3>
+            <ul>
+              <li><strong>โทรศัพท์:</strong> 081-234-5678 (จันทร์-อาทิตย์ 8:00-20:00 น.)</li>
+              <li><strong>Line:</strong> @mystore</li>
+              <li><strong>อีเมล:</strong> admin@localhost.com</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Care Instructions Page -->
+    <section id="care" class="page">
+      <div class="container">
+        <div class="page-header">
+          <h2>วิธีการดูแลโบว์</h2>
+        </div>
+
+        <div class="info-content">
+          <div class="info-section">
+            <h3>การดูแลรักษาโบว์สีดำ</h3>
+            <p>โบว์ของเราทำจากผ้าคุณภาพดี หากดูแลอย่างถูกวิธีจะใช้งานได้นานและคงความสวยงาม</p>
+          </div>
+
+          <div class="info-section">
+            <h3>การทำความสะอาด</h3>
+
+            <h4>โบว์ผ้าซาตินและผ้าไหม</h4>
+            <ul>
+              <li>ซักแห้งเท่านั้น (Dry Clean Only)</li>
+              <li>ไม่ควรซักด้วยน้ำ</li>
+              <li>หากมีคราบเล็กน้อย ใช้ผ้าชุบน้ำเย็นเช็ดเบาๆ</li>
+            </ul>
+
+            <h4>โบว์ผ้ากำมะหยี่</h4>
+            <ul>
+              <li>ซักแห้งเท่านั้น</li>
+              <li>ใช้แปรงนุ่มๆ ปัดฝุ่นเบาๆ</li>
+              <li>เก็บในที่แห้งและมีอากาศถ่ายเท</li>
+            </ul>
+
+            <h4>โบว์ผ้าลูกไม้และผ้าฝ้าย</h4>
+            <ul>
+              <li>ซักมือด้วยน้ำเย็นและผงซักฟอกอ่อนๆ</li>
+              <li>ไม่ควรบิดหรือบีบแรงๆ</li>
+              <li>ตากในที่ร่มให้แห้งเอง</li>
+            </ul>
+          </div>
+
+          <div class="info-section">
+            <h3>การรีดและจัดรูปทรง</h3>
+            <ul>
+              <li>ใช้เตารีดไอน้ำที่อุณหภูมิต่ำ</li>
+              <li>รีดจากด้านหลังของผ้า</li>
+              <li>วางผ้าบางๆ คั่นระหว่างเตารีดกับโบว์</li>
+              <li>หากเป็นผ้ากำมะหยี่ ใช้ไอน้ำรมแทนการรีด</li>
+            </ul>
+          </div>
+
+          <div class="info-section">
+            <h3>การเก็บรักษา</h3>
+            <ul>
+              <li>แขวนหรือวางราบในที่แห้งและมีอากาศถ่ายเท</li>
+              <li>หลีกเลี่ยงแสงแดดโดยตรง</li>
+              <li>ไม่ควรพับทับหรือกดทับด้วยของหนัก</li>
+              <li>เก็บในถุงผ้าหรือกล่องเพื่อป้องกันฝุ่น</li>
+              <li>แยกเก็บจากเครื่องหอมหรือสารเคมี</li>
+            </ul>
+          </div>
+
+          <div class="info-section">
+            <h3>คำแนะนำเพิ่มเติม</h3>
+            <ul>
+              <li>หลีกเลี่ยงการสัมผัสกับน้ำหอมหรือสเปรย์โดยตรง</li>
+              <li>ถอดออกก่อนรับประทานอาหารเพื่อป้องกันคราบ</li>
+              <li>หากเปียกน้ำ ให้ซับด้วยผ้าแห้งและตากในที่ร่ม</li>
+              <li>ตรวจสอบความเรียบร้อยก่อนใช้งานทุกครั้ง</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Page -->
+    <section id="faq" class="page">
+      <div class="container">
+        <div class="page-header">
+          <h2>คำถามที่พบบ่อย</h2>
+        </div>
+
+        <div class="info-content">
+          <div class="faq-item">
+            <h3>โบว์ของคุณทำจากวัสดุอะไร?</h3>
+            <p>โบว์ของเราทำจากผ้าคุณภาพดีหลากหลายชนิด เช่น ผ้าซาติน ผ้ากำมะหยี่ ผ้าลูกไม้ ผ้าก้างปลา และผ้าฝ้าย แต่ละชนิดมีเนื้อสัมผัสและความเหมาะสมที่แตกต่างกัน</p>
+          </div>
+
+          <div class="faq-item">
+            <h3>โบว์มีขนาดเท่าไหร่?</h3>
+            <p>โบว์ของเรามีขนาดมาตรฐาน กว้างประมาณ 8-10 ซม. ยาวประมาณ 12-15 ซม. เหมาะสำหรับติดเสื้อทั่วไป</p>
+          </div>
+
+          <div class="faq-item">
+            <h3>วิธีติดโบว์อย่างไร?</h3>
+            <p>โบว์ของเรามีเข็มกลัดด้านหลัง สามารถติดกับเสื้อได้ง่าย เพียงเสียบเข็มผ่านผ้าเสื้อและล็อคให้แน่น</p>
+          </div>
+
+          <div class="faq-item">
+            <h3>สั่งซื้อวันนี้ เมื่อไหร่จะได้รับสินค้า?</h3>
+            <p>หากสั่งซื้อก่อน 14:00 น. เราจะจัดส่งในวันเดียวกัน สำหรับกรุงเทพและปริมณฑลจะได้รับภายใน 1-2 วัน ต่างจังหวัด 3-5 วัน</p>
+          </div>
+
+          <div class="faq-item">
+            <h3>มีบริการจัดส่งด่วนหรือไม่?</h3>
+            <p>มีครับ เราให้บริการจัดส่งด่วนพิเศษ (1-2 วันทำการ) ค่าบริการ ฿100</p>
+          </div>
+
+          <div class="faq-item">
+            <h3>สามารถสั่งซื้อจำนวนมากได้หรือไม่?</h3>
+            <p>ได้ครับ หากต้องการสั่งซื้อจำนวนมาก (10 ชิ้นขึ้นไป) กรุณาติดต่อเราโดยตรงเพื่อรับราคาพิเศษและข้อเสนอที่ดีกว่า</p>
+          </div>
+
+          <div class="faq-item">
+            <h3>ชำระเงินอย่างไร?</h3>
+            <p>เรารับชำระเงินผ่านพร้อมเพย์ (PromptPay) โดยสแกน QR Code หลังจากยืนยันคำสั่งซื้อ</p>
+          </div>
+
+          <div class="faq-item">
+            <h3>สามารถคืนสินค้าได้หรือไม่?</h3>
+            <p>ได้ครับ หากสินค้ามีปัญหาหรือไม่ตรงตามที่สั่ง สามารถคืนสินค้าได้ภายใน 7 วัน โดยสินค้าต้องอยู่ในสภาพเดิม</p>
+          </div>
+
+          <div class="faq-item">
+            <h3>โบว์เหมาะกับงานอะไรบ้าง?</h3>
+            <p>โบว์สีดำของเราเหมาะสำหรับงานศพ งานไว้อาลัย งานรำลึก และงานพิธีต่างๆ ที่ต้องการแสดงความเคารพและความสุภาพ</p>
+          </div>
+
+          <div class="faq-item">
+            <h3>ติดต่อสอบถามเพิ่มเติมได้ที่ไหน?</h3>
+            <p>สามารถติดต่อเราได้ทาง:</p>
+            <ul>
+              <li>โทรศัพท์: 081-234-5678</li>
+              <li>Line: @mystore</li>
+              <li>อีเมล: admin@localhost.com</li>
+              <li>เวลาทำการ: จันทร์-อาทิตย์ 8:00-20:00 น.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Page -->
+    <section id="contact" class="page">
+      <div class="container">
+        <div class="page-header">
+          <h2>ติดต่อเรา</h2>
+        </div>
+
+        <div class="contact-container">
+          <div class="contact-info">
+            <h3>ติดต่อสอบถาม</h3>
+            <p>มีคำถามเกี่ยวกับสินค้าหรือต้องการความช่วยเหลือ? ติดต่อเราได้ทุกเวลา</p>
+
+            <div class="contact-item">
+              <h4>อีเมล</h4>
+              <p>admin@localhost.com</p>
+            </div>
+
+            <div class="contact-item">
+              <h4>โทรศัพท์</h4>
+              <p>081-234-5678</p>
+            </div>
+
+            <div class="contact-item">
+              <h4>ไลน์</h4>
+              <p>@mystore</p>
+            </div>
+
+            <div class="contact-item">
+              <h4>เวลาทำการ</h4>
+              <p>จันทร์-อาทิตย์ 8:00-20:00 น.</p>
+            </div>
+          </div>
+
+          <div class="contact-form">
+            <h3>ส่งข้อความถึงเรา</h3>
+            <form id="contact-form">
+              <div class="form-group">
+                <label for="contact-name">ชื่อ-นามสกุล *</label>
+                <input type="text" id="contact-name" placeholder="กรอกชื่อ-นามสกุล" required>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-email">อีเมล *</label>
+                <input type="email" id="contact-email" placeholder="example@email.com" required>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-phone">เบอร์โทรศัพท์</label>
+                <input type="tel" id="contact-phone" placeholder="08X-XXX-XXXX">
+              </div>
+
+              <div class="form-group">
+                <label for="contact-subject">หัวข้อ *</label>
+                <input type="text" id="contact-subject" placeholder="เรื่องที่ต้องการสอบถาม" required>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-message">ข้อความ *</label>
+                <textarea id="contact-message" rows="5" placeholder="รายละเอียดที่ต้องการสอบถาม..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary">ส่งข้อความ</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>โบว์ไว้อาลัย</h3>
+          <p>โบว์สีดำคุณภาพดี สำหรับแสดงความเคารพในทุกโอกาสสำคัญ จัดส่งรวดเร็วทั่วประเทศ</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>เมนูหลัก</h4>
+          <ul>
+            <li><a href="#" class="footer-link" data-page="home">หน้าแรก</a></li>
+            <li><a href="#" class="footer-link" data-page="products">สินค้า</a></li>
+            <li><a href="#" class="footer-link" data-page="about">เกี่ยวกับเรา</a></li>
+            <li><a href="#" class="footer-link" data-page="contact">ติดต่อเรา</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>บริการลูกค้า</h4>
+          <ul>
+            <li><a href="#" class="footer-link" data-page="shipping">การจัดส่งและคืนสินค้า</a></li>
+            <li><a href="#" class="footer-link" data-page="how-to-order"></a></li>
+            <li><a href="#" class="footer-link" data-page="care">วิธีการดูแลโบว์</a></li>
+            <li><a href="#" class="footer-link" data-page="faq">คำถามที่พบบ่อย</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>ติดตามเรา</h4>
+          <div class="social-links">
+            <a href="https://www.facebook.com/kotchasanfw" aria-label="Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+            <a href="https://line.me/ti/p/~mystore" aria-label="Line">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </a>
+            <a href="https://ig.me/m/mystore" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 โบว์ไว้อาลัย สงวนลิขสิทธิ์</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Sidebar -->
+  <div class="cart-sidebar" id="cart-sidebar">
+    <div class="cart-header">
+      <h3>ตะกร้าสินค้า</h3>
+      <button class="close-cart" id="close-cart">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div class="cart-items" id="sidebar-cart-items">
+      <!-- Cart items will be loaded here -->
+    </div>
+
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>ยอดรวม:</span>
+        <span id="sidebar-cart-total">฿0.00</span>
+      </div>
+      <a href="#" class="btn btn-primary" data-page="checkout">ชำระเงิน</a>
+      <a href="#" class="btn btn-secondary" data-page="products">เลือกซื้อต่อ</a>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Notification Toast -->
+  <div class="toast" id="toast">
+    <div class="toast-content">
+      <span id="toast-message"></span>
+      <button class="toast-close" id="toast-close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

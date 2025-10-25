@@ -1,0 +1,69 @@
+# Environment variables (credentials)
+.env
+
+# IDE / Editor rules
+.clinerules/byterover-rules.md
+.kilocode/rules/byterover-rules.md
+.roo/rules/byterover-rules.md
+.windsurf/rules/byterover-rules.md
+.cursor/rules/byterover-rules.mdc
+.kiro/steering/byterover-rules.md
+.qoder/rules/byterover-rules.md
+.augment/rules/byterover-rules.md
+
+# IDE configurations
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+api/logs/
+*.log
+error_log
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.*.swp
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Database dumps
+*.sql.gz
+*.sql.bak
+dump.sql
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Development tools
+node_modules/
+vendor/
+composer.phar
+package-lock.json
+yarn.lock
+
+# Build artifacts
+dist/
+build/
+
+# Test files
+tests/
+test.php
+phpunit.xml
+
+# Documentation drafts
+CLAUDE.md

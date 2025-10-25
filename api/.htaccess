@@ -1,0 +1,17 @@
+# Protect API directory
+<Files "config.php">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Prevent access to log files
+<FilesMatch "\.(log|txt)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Allow only PHP files to be executed
+<FilesMatch "\.php$">
+    Order allow,deny
+    Allow from all
+</FilesMatch>
